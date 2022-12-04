@@ -17,17 +17,26 @@ def register(request):
 
         if password == password_verification:
             if User.objects.filter(username=username).exists():
-                messages.info(request, 'Email is already in use')
+                messages.error(request, 'Username already exists')
                 return redirect('register')
             else:
-                user = User.objects.create_user(username=username, email=email, password=password)
-                messages.info(request, 'User successfully created')
-                return redirect('login')
+                if User.objects.filter(email=email).exists():
+                    messages.error(request, 'Email is already in use', )
+                    return redirect('register')
+                else:
+                    user = User.objects.create_user(username=username, email=email, password=password)
+                    user.save()
+                    messages.success(request, 'User successfully created')
+                    return redirect('login')
         else:
             messages.info(request, 'Passwords did not match')
             return redirect('register')
     else:
         return render(request, 'register.html')
+
+
+def login(request):
+    return render(request, 'login.html')
 
 
 def encode(request):
