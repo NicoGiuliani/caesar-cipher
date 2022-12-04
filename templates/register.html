@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block body %}
+<style>
+    p {
+        display: inline-block;
+    }
+</style>
+<div class='container'>
+    <div class='row justify-content-center'>
+        <div class='col-4'>
+            <h1>User Registration</h1><br>
+            <form method='POST' action='register'>
+                <p>Username: </p>
+                <input class='float-end' type='text' name='username'></input><br>
+                <p>Email: </p>
+                <input class='float-end' type='email' name='email'></input><br>
+                <p>Password: </p>
+                <input class='float-end' type='password' name='password'></input><br>
+                <p>Retype Password: </p>
+                <input class='float-end' type='password' name='password_verification'></input><br>
+                <input type='submit' value='Register'></input>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

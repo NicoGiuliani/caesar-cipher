@@ -6,6 +6,9 @@ def index(request):
     return render(request, 'index.html')
 
 
+def register(request):
+    return render(request, 'register.html')
+
 def encode(request):
     if request.method == 'POST':
         plaintext_message = request.POST['plaintext_message'].upper()
