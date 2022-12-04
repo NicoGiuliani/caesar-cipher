@@ -1,4 +1,6 @@
 from django.shortcuts import render, redirect
+from django.contrib.auth.models import User, auth
+from django.contrib import messages
 from datetime import datetime
 
 # Create your views here.
@@ -7,7 +9,26 @@ def index(request):
 
 
 def register(request):
-    return render(request, 'register.html')
+    if request.method == 'POST':
+        username = request.POST['username']
+        email = request.POST['email']
+        password = request.POST['password']
+        password_verification = request.POST['password_verification']
+
+        if password == password_verification:
+            if User.objects.filter(username=username).exists():
+                messages.info(request, 'Email is already in use')
+                return redirect('register')
+            else:
+                user = User.objects.create_user(username=username, email=email, password=password)
+                messages.info(request, 'User successfully created')
+                return redirect('login')
+        else:
+            messages.info(request, 'Passwords did not match')
+            return redirect('register')
+    else:
+        return render(request, 'register.html')
+
 
 def encode(request):
     if request.method == 'POST':
