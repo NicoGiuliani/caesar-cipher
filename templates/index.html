@@ -12,5 +12,12 @@
             <textarea name='plaintext_message' rows='10' cols='50'></textarea><br>
             <input type='submit' value='Encode'></input>
         </form>
+        <br>
+        <form method='POST' action='decode'>
+            {% csrf_token %}
+            <h5>Type message to decode below:</h5>
+            <textarea name='encoded_message' rows='10' cols='50'></textarea><br>
+            <input type='submit' value='Decode'></input>
+        </form>
     </body>
 </html>
