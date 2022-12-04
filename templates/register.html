@@ -19,13 +19,13 @@
             <form method='POST' action='register'>
                 {% csrf_token %}
                 <p>Username: </p>
-                <input class='float-end' type='text' name='username'></input><br>
+                <input class='float-end' type='text' name='username' required></input><br>
                 <p>Email: </p>
-                <input class='float-end' type='email' name='email'></input><br>
+                <input class='float-end' type='email' name='email' required></input><br>
                 <p>Password: </p>
-                <input class='float-end' type='password' name='password'></input><br>
+                <input class='float-end' type='password' name='password' required></input><br>
                 <p>Retype Password: </p>
-                <input class='float-end' type='password' name='password_verification'></input><br>
+                <input class='float-end' type='password' name='password_verification' required></input><br>
                 <input type='submit' value='Register'></input>
             </form>
         </div>
