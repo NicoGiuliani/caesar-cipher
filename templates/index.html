@@ -36,10 +36,18 @@
                 <input type='text' name='shift_value' placeholder='Enter shift value'></input>
                 <input type='submit' value='Decode'></input>
             </form>
-            <form method='POST' action='logout'>
-                {% csrf_token %}
-                <input type='submit' value='Logout'></input>
-            </form>
+
+            <div class='d-flex container' style='justify-content:center'>
+                <form method='POST' action='view' class='me-1'>
+                    {% csrf_token %}
+                    <input type='submit' value='View Encoded Messages'></input>
+                </form>
+                <form method='POST' action='logout'>
+                    {% csrf_token %}
+                    <input type='submit' value='Logout'></input>
+                </form>
+            </div>
+
             {% else %}
             <h1>Welcome! You must be logged in to continue.</h1>
             {% for message in messages %}
