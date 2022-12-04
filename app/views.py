@@ -2,12 +2,19 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.models import User, auth
 from django.contrib import messages
 from datetime import datetime
+from .models import Encoded_Message
+
 
 # Create your views here.
 def index(request):
     if request.method == 'POST':
         encoded_message = request.POST['encoded_message']
-        messages.success(request, 'Encoded message saved succesfully*')
+        username = request.POST['username']
+
+        message = Encoded_Message(1, username, encoded_message, datetime.now())
+        message.save()
+        messages.success(request, message)
+        messages.success(request, username)
         return redirect('/')
     else:
         return render(request, 'index.html')

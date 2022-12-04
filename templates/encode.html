@@ -4,6 +4,7 @@
 <div>
     <form method='POST' action='/' style='inline-block;width:200px;float:left'>
         {% csrf_token %}
+        <input type='text' name='username' value={{user.username}} hidden=True></input>
         <input type='text' name='encoded_message' value={{encoded_message}} hidden=True></input>
         <input type='submit' value='Save Encoded Message'></input>
     </form>
