@@ -9,12 +9,11 @@ from .models import Encoded_Message
 def index(request):
     if request.method == 'POST':
         encoded_message = request.POST['encoded_message']
-        username = request.POST['username']
-
-        message = Encoded_Message(1, username, encoded_message, datetime.now())
+        user_id = request.POST['user_id']
+        user = User.objects.filter(id=user_id)[0]
+        message = Encoded_Message(id=1, owner=user, text=encoded_message, creation_date=datetime.now())
         message.save()
-        messages.success(request, message)
-        messages.success(request, username)
+        messages.success(request, 'Message saved successfully')
         return redirect('/')
     else:
         return render(request, 'index.html')
