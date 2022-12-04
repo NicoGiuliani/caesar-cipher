@@ -3,5 +3,6 @@ from django.http import HttpResponse
 from . import views
 
 urlpatterns = [
-    path('', views.index, name='index')
+    path('', views.index, name='index'),
+    path('encode', views.encode, name='encode'),
 ]
