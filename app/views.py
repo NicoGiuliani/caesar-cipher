@@ -36,7 +36,10 @@ def register(request):
 
 
 def login(request):
-    return render(request, 'login.html')
+    if request.method == 'POST':
+        pass
+    else:
+        return render(request, 'login.html')
 
 
 def encode(request):
