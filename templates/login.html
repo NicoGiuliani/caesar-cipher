@@ -19,9 +19,9 @@
             <h1>Welcome to the login page</h1>
             {% for message in messages %}
             {% if message.tags == 'success' %}
-            <h5 class='success'>**{{message}}**</h5>
+            <h5 class='success'>** {{message}} **</h5>
             {% else %}
-            <h5 class='error'>**{{message}}**</h5>
+            <h5 class='error'>** {{message}} **</h5>
             {% endif %}
             {% endfor %}
             <form method='POST' action='login'>

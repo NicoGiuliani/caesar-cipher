@@ -5,7 +5,12 @@ from datetime import datetime
 
 # Create your views here.
 def index(request):
-    return render(request, 'index.html')
+    if request.method == 'POST':
+        encoded_message = request.POST['encoded_message']
+        messages.success(request, 'Encoded message saved succesfully*')
+        return redirect('/')
+    else:
+        return render(request, 'index.html')
 
 
 def register(request):
