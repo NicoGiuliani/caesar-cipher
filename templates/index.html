@@ -3,6 +3,8 @@
 <div class='container'>
     <div class='row text-center'>
         <div class='col-12'>
+            {% if user.is_authenticated %}
+            <h3>Logged in as <strong>{{user.username}}</strong></h3>
             <form method='POST' action='encode'>
                 {% csrf_token %}
                 <h5>Type message to encode below:</h5>
@@ -18,6 +20,12 @@
                 <input type='text' name='shift_value' placeholder='Enter shift value'></input>
                 <input type='submit' value='Decode'></input>
             </form>
+            {% else %}
+            <h1>Welcome! You must be logged in to continue.</h1>
+            <form action='login'>
+                <input type='submit' value='Login'></input>
+            </form>
+            {% endif %}
         </div>
     </div>
 </div>

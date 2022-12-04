@@ -4,13 +4,37 @@
     .success {
         color: green;
     }
+
+    .error {
+        color: red;
+    }
+
+    p {
+        display: inline-block;
+    }
 </style>
-<h1>Welcome to the login page</h1>
-{% for message in messages %}
-{% if message.tags == 'success' %}
-<h5 class="success">**{{message}}**</h5>
-{% else %}
-<h5>**{{message}}**</h5>
-{% endif %}
-{% endfor %}
+<div class='container'>
+    <div class='row justify-content-center'>
+        <div class='col-5 text-center'>
+            <h1>Welcome to the login page</h1>
+            {% for message in messages %}
+            {% if message.tags == 'success' %}
+            <h5 class='success'>**{{message}}**</h5>
+            {% else %}
+            <h5 class='error'>**{{message}}**</h5>
+            {% endif %}
+            {% endfor %}
+            <form method='POST' action='login'>
+                {% csrf_token %}
+                <p>Username: </p>
+                <input type='text' name='username'></input><br>
+                <p>Password: </p>
+                <input type='password' name='password'></input><br>
+                <input type='submit' value='Login'></input>
+            </form>
+        </div>
+    </div>
+</div>
+
+
 {% endblock %}
