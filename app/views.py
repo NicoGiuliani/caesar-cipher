@@ -51,6 +51,12 @@ def login(request):
         return render(request, 'login.html')
 
 
+def logout(request):
+    auth.logout(request)
+    messages.success(request, 'Successfully logged out')
+    return redirect('/')
+
+
 def encode(request):
     if request.method == 'POST':
         plaintext_message = request.POST['plaintext_message'].upper()
