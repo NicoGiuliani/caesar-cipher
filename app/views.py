@@ -9,7 +9,7 @@ def index(request):
 def encode(request):
     if request.method == 'POST':
         plaintext_message = request.POST['plaintext_message'].upper()
-        shift = 5
+        shift = int(request.POST['shift_value'])
 
         english_alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
         encoded_message = list(plaintext_message[:])
@@ -30,7 +30,7 @@ def decode(request):
     plaintext_message = list(encoded_message[:])
 
     english_alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-    shift = 5
+    shift = int(request.POST['shift_value'])
 
     for i in range(len(encoded_message)):
         current_character = encoded_message[i]
