@@ -21,10 +21,12 @@
                         <td>{{encoded_message.owner}}</td>
                         <td>{{encoded_message.creation_date}}</td>
                     </tr>
-                    <p>{{encoded_message.text}}</p>
                     {% endfor %}
                 </tbody>
             </table>
+            <form action='/'>
+                <input type='submit' value='Return'></input>
+            </form>
         </div>
     </div>
 </div>
