@@ -103,6 +103,9 @@ def encode(request):
         
         try:
             shift = int(str_shift_value)
+            if shift > 1000000000:
+                messages.error(request, 'Shift value must be no greater than |1000000000|')
+                return redirect('/')
         except ValueError:
             messages.error(request, 'Shift value must be an integer')
             return redirect('/')
@@ -128,9 +131,12 @@ def decode(request):
         encoded_message = request.POST['encoded_message'].upper()
         plaintext_message = list(encoded_message[:])
         str_shift_value = request.POST['shift_value']
-        
+
         try:
             shift = int(str_shift_value)
+            if shift > 1000000000:
+                messages.error(request, 'Shift value must be no greater than |1000000000|')
+                return redirect('/')
         except ValueError:
             messages.error(request, 'Shift value must be an integer')
             return redirect('/')
