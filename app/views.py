@@ -3,6 +3,7 @@ from django.contrib.auth.models import User, auth
 from django.contrib import messages
 from datetime import datetime
 from .models import Encoded_Message
+import random
 
 
 # Create your views here.
@@ -11,7 +12,14 @@ def index(request):
         encoded_message = request.POST['encoded_message']
         user_id = request.POST['user_id']
         user = User.objects.filter(id=user_id)[0]
-        message = Encoded_Message(id=1, owner=user, text=encoded_message, creation_date=datetime.now())
+
+        message_id_selected = False 
+        while message_id_selected == False:
+            message_id = random.randint(1, 1000000000)
+            if Encoded_Message.objects.filter(id=message_id).exists() == False:
+                message_id_selected = True
+
+        message = Encoded_Message(id=message_id, owner=user, text=encoded_message, creation_date=datetime.now())
         message.save()
         messages.success(request, 'Message saved successfully')
         return redirect('/')
