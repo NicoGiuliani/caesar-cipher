@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block body %}
+<h1>Saved Encoded Messages</h1>
+<table>
+    <tr>
+        <th>Message ID</th>
+        <th>Text</th>
+        <th>Owner</th>
+        <th>Created On</th>
+    </tr>
+    {% for encoded_message in encoded_message_list %}
+    <tr>
+        <td>{{encoded_message.id}}</td>
+        <td>{{encoded_message.text}}</td>
+        <td>{{encoded_message.owner}}</td>
+        <td>{{encoded_message.creation_date}}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

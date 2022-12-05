@@ -69,6 +69,13 @@ def logout(request):
     return redirect('/')
 
 
+def view(request):
+    username = request.POST['username']
+    user = User.objects.filter(username=username)[0]
+    encoded_message_list = Encoded_Message.objects.filter(owner=user)
+    return render(request, 'view.html', {'encoded_message_list': encoded_message_list})
+
+
 def encode(request):
     if request.method == 'POST':
         plaintext_message = request.POST['plaintext_message'].upper()
