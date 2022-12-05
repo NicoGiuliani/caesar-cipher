@@ -38,9 +38,7 @@
             </form>
 
             <div class='d-flex' style='justify-content:center'>
-                <form method='POST' action='view' class='me-1'>
-                    {% csrf_token %}
-                    <input type='hidden' name='username' value={{user.username}}></input>
+                <form method='GET' action='view/{{user.username}}' class='me-1'>
                     <input type='submit' value='View Encoded Messages'></input>
                 </form>
                 <form method='POST' action='logout'>

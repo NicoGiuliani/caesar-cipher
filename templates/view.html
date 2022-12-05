@@ -24,9 +24,10 @@
                         <td>{{encoded_message.owner}}</td>
                         <td>{{encoded_message.creation_date}}</td>
                         <td>
-                            <form action='delete' method='POST'>
+                            <form action='../delete' method='POST'>
                                 {% csrf_token %}
                                 <input type='hidden' name='message_id' value={{encoded_message.id}}></input>
+                                <input type='hidden' name='username' value={{user.username}}></input>
                                 <input type='submit' value='Delete'></input>
                             </form>
                         </td>

@@ -1,3 +1,4 @@
+from os import path
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User, auth
@@ -81,8 +82,7 @@ def logout(request):
     return redirect('/')
 
 
-def view(request):
-    username = request.POST['username']
+def view(request, username):
     user = User.objects.filter(username=username)[0]
     encoded_message_list = Encoded_Message.objects.filter(owner=user)
     return render(request, 'view.html', {'encoded_message_list': encoded_message_list})
@@ -90,9 +90,11 @@ def view(request):
 
 def delete(request):
     message_id = request.POST['message_id']
+    username = request.POST['username']
     message = Encoded_Message.objects.filter(id=message_id)[0]
     message.delete()
-    return HttpResponseRedirect(reverse('index'))
+    return redirect('view/' + username)
+
 
 def encode(request):
     if request.method == 'POST':
