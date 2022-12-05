@@ -79,7 +79,7 @@ def login(request):
 def logout(request):
     auth.logout(request)
     messages.success(request, 'Successfully logged out')
-    return redirect('/')
+    return redirect('login')
 
 
 def view(request, username):

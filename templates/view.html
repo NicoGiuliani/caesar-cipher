@@ -3,6 +3,7 @@
 <div class='container'>
     <div class='row text-center'>
         <div class='col-12'>
+            {% if user.is_authenticated %}
             <h1>Saved Encoded Messages</h1>
             <table class="table table-hover">
                 <thead>
@@ -38,6 +39,12 @@
             <form action='/'>
                 <input type='submit' value='Return'></input>
             </form>
+            {% else %}
+            <h1>You must be logged in to view this page.</h1>
+            <form action='../login'>
+                <input type='submit' value='Login or Register'></input>
+            </form>
+            {% endif %}
         </div>
     </div>
 </div>

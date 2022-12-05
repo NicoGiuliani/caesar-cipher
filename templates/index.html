@@ -14,13 +14,13 @@
         <div class='col-12'>
             {% if user.is_authenticated %}
             <h3><u>Logged in as <strong>{{user.username}}</strong></u></h3>
-            {% for message in messages %}
-            {% if message.tags == 'success' %}
-            <h5 class='success'>** {{message}} **</h5>
-            {% else %}
-            <h5 class='error'>** {{message}} **</h5>
-            {% endif %}
-            {% endfor %}
+                {% for message in messages %}
+                    {% if message.tags == 'success' %}
+                    <h5 class='success'>** {{message}} **</h5>
+                    {% else %}
+                    <h5 class='error'>** {{message}} **</h5>
+                    {% endif %}
+                {% endfor %}
             <form method='POST' action='encode'>
                 {% csrf_token %}
                 <h5>Type message to encode below:</h5>
@@ -49,9 +49,9 @@
 
             {% else %}
             <h1>Welcome! You must be logged in to continue.</h1>
-            {% for message in messages %}
-            <h5 class='success'>** {{message}} **</h5>
-            {% endfor %}
+                {% for message in messages %}
+                <h5 class='success'>** {{message}} **</h5>
+                {% endfor %}
             <form action='login'>
                 <input type='submit' value='Login or Register'></input>
             </form>
