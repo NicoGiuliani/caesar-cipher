@@ -26,7 +26,7 @@
             {% endfor %}
             <form method='POST' action='login'>
                 {% csrf_token %}
-                <div class='col-12' style='margin:0 auto;width:280px'>
+                <div class='col-12' style='margin:0 auto;width:300px'>
                     <div style='text-align:right'>
                         <p>Username: </p>
                         <input type='text' name='username'></input><br>
@@ -35,8 +35,8 @@
                     </div>
                 </div>
                 <input type='submit' value='Login' class="mb-4"></input><br>
-                <a href='register'>Click here to register</a>
             </form>
+            <a href='register'>Click here to register</a>
         </div>
     </div>
 </div>

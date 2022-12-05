@@ -5,4 +5,5 @@ from django.contrib.auth.models import User, auth
 class Encoded_Message(models.Model):
     owner = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)
     text = models.CharField(blank=True, null=True, max_length=1000)
-    creation_date = models.DateTimeField(blank=True, null=True, ) 
+    shift = models.IntegerField(blank=True, null=True)
+    creation_date = models.DateTimeField(blank=True, null=True) 

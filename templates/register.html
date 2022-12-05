@@ -11,7 +11,7 @@
 </style>
 <div class='container'>
     <div class='row justify-content-center'>
-        <div class='col-4' style='text-align:center'>
+        <div style='text-align:center;width:380px'>
             <h1>User Registration</h1><br>
             {% for message in messages %}
             <h5 class='alert'>** {{message}} **</h5>
@@ -30,11 +30,9 @@
                         <input type='password' name='password_verification' required></input><br>
                     </div>
                 </div>
-                <input class='me-1' type='submit' value='Register' style='margin-left:110px;float:left'></input>
+                <input type='submit' value='Register' class="mb-4"></input>
             </form>
-            <form action='login'>
-                <input type='submit' value='Return' style='float:left'></input>
-            </form>
+            <a href='login'>Click here to return to login page</a>
         </div>
     </div>
 </div>

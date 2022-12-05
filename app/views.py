@@ -1,7 +1,10 @@
+from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User, auth
 from django.contrib import messages
 from datetime import datetime
+
+from django.urls import reverse
 from .models import Encoded_Message
 import random
 
@@ -10,6 +13,7 @@ import random
 def index(request):
     if request.method == 'POST':
         encoded_message = request.POST['encoded_message']
+        shift = request.POST['shift']
         user_id = request.POST['user_id']
         user = User.objects.filter(id=user_id)[0]
 
@@ -19,7 +23,7 @@ def index(request):
             if Encoded_Message.objects.filter(id=message_id).exists() == False:
                 message_id_selected = True
 
-        message = Encoded_Message(id=message_id, owner=user, text=encoded_message, creation_date=datetime.now())
+        message = Encoded_Message(id=message_id, owner=user, text=encoded_message, shift=shift, creation_date=datetime.now())
         message.save()
         messages.success(request, 'Message saved successfully')
         return redirect('/')
@@ -84,6 +88,12 @@ def view(request):
     return render(request, 'view.html', {'encoded_message_list': encoded_message_list})
 
 
+def delete(request):
+    message_id = request.POST['message_id']
+    message = Encoded_Message.objects.filter(id=message_id)[0]
+    message.delete()
+    return HttpResponseRedirect(reverse('index'))
+
 def encode(request):
     if request.method == 'POST':
         plaintext_message = request.POST['plaintext_message'].upper()
@@ -100,7 +110,7 @@ def encode(request):
 
         encoded_message = ''.join(encoded_message)
 
-        return render(request, 'encode.html', {'encoded_message': encoded_message})
+        return render(request, 'encode.html', {'encoded_message': encoded_message, 'shift': shift})
 
 
 def decode(request):

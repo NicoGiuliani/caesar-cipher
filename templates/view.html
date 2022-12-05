@@ -9,8 +9,10 @@
                     <tr>
                         <th scope="col">Message ID</th>
                         <th scope="col">Text</th>
+                        <th scope="col">Shift</th>
                         <th scope="col">Owner</th>
                         <th scope="col">Created On</th>
+                        <th scope="col">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -18,8 +20,16 @@
                     <tr class="table-default">
                         <th scope="row">{{encoded_message.id}}</th>
                         <td>{{encoded_message.text}}</td>
+                        <td>{{encoded_message.shift}}</td>
                         <td>{{encoded_message.owner}}</td>
                         <td>{{encoded_message.creation_date}}</td>
+                        <td>
+                            <form action='delete' method='POST'>
+                                {% csrf_token %}
+                                <input type='hidden' name='message_id' value={{encoded_message.id}}></input>
+                                <input type='submit' value='Delete'></input>
+                            </form>
+                        </td>
                     </tr>
                     {% endfor %}
                 </tbody>

@@ -6,6 +6,7 @@
         {% csrf_token %}
         <input type='hidden' name='user_id' value={{user.id}}></input>
         <input type='hidden' name='encoded_message' value='{{encoded_message}}'></input>
+        <input type='hidden' name='shift' value={{shift}}></input>
         <input type='submit' value='Save Encoded Message'></input>
     </form>
     <form action='/' style='inline-block;width:200px;float:left'>
