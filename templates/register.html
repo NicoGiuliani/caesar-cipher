@@ -11,22 +11,29 @@
 </style>
 <div class='container'>
     <div class='row justify-content-center'>
-        <div class='col-4'>
+        <div class='col-4' style='text-align:center'>
             <h1>User Registration</h1><br>
             {% for message in messages %}
             <h5 class='alert'>** {{message}} **</h5>
             {% endfor %}
             <form method='POST' action='register'>
                 {% csrf_token %}
-                <p>Username: </p>
-                <input class='float-end' type='text' name='username' required></input><br>
-                <p>Email: </p>
-                <input class='float-end' type='email' name='email' required></input><br>
-                <p>Password: </p>
-                <input class='float-end' type='password' name='password' required></input><br>
-                <p>Retype Password: </p>
-                <input class='float-end' type='password' name='password_verification' required></input><br>
-                <input type='submit' value='Register'></input>
+                <div class='col-12'>
+                    <div style='text-align:right;margin:0 auto'>
+                        <p>Username: </p>
+                        <input type='text' name='username' required></input><br>
+                        <p>Email: </p>
+                        <input type='email' name='email' required></input><br>
+                        <p>Password: </p>
+                        <input type='password' name='password' required></input><br>
+                        <p>Retype Password: </p>
+                        <input type='password' name='password_verification' required></input><br>
+                    </div>
+                </div>
+                <input class='me-1' type='submit' value='Register' style='margin-left:110px;float:left'></input>
+            </form>
+            <form action='login'>
+                <input type='submit' value='Return' style='float:left'></input>
             </form>
         </div>
     </div>
