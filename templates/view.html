@@ -25,12 +25,20 @@
                         <td>{{encoded_message.owner}}</td>
                         <td>{{encoded_message.creation_date}}</td>
                         <td>
-                            <form action='../delete' method='POST'>
-                                {% csrf_token %}
-                                <input type='hidden' name='message_id' value={{encoded_message.id}}></input>
-                                <input type='hidden' name='username' value={{user.username}}></input>
-                                <input type='submit' value='Delete'></input>
-                            </form>
+                            <div class='d-flex justify-content-evenly'>
+                                <form action='../decode' method='POST' class='me-1'>
+                                    {% csrf_token %}
+                                    <input type='hidden' name='encoded_message' value='{{encoded_message.text}}'></input>
+                                    <input type='hidden' name='shift_value' value={{encoded_message.shift}}></input>
+                                    <input type='submit' value='Decode'></input>
+                                </form>
+                                <form action='../delete' method='POST' class='me-1'>
+                                    {% csrf_token %}
+                                    <input type='hidden' name='message_id' value={{encoded_message.id}}></input>
+                                    <input type='hidden' name='username' value={{user.username}}></input>
+                                    <input type='submit' value='Delete'></input>
+                                </form>
+                            </div>
                         </td>
                     </tr>
                     {% endfor %}

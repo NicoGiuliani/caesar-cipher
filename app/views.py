@@ -99,7 +99,13 @@ def delete(request):
 def encode(request):
     if request.method == 'POST':
         plaintext_message = request.POST['plaintext_message'].upper()
-        shift = int(request.POST['shift_value'])
+        str_shift_value = request.POST['shift_value']
+        
+        try:
+            shift = int(str_shift_value)
+        except ValueError:
+            messages.error(request, 'Shift value must be an integer')
+            return redirect('/')
 
         english_alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
         encoded_message = list(plaintext_message[:])
@@ -113,22 +119,34 @@ def encode(request):
         encoded_message = ''.join(encoded_message)
 
         return render(request, 'encode.html', {'encoded_message': encoded_message, 'shift': shift})
+    else:
+        return redirect('/')
 
 
 def decode(request):
-    encoded_message = request.POST['encoded_message'].upper()
-    plaintext_message = list(encoded_message[:])
+    if request.method == 'POST':
+        encoded_message = request.POST['encoded_message'].upper()
+        plaintext_message = list(encoded_message[:])
+        str_shift_value = request.POST['shift_value']
+        
+        try:
+            shift = int(str_shift_value)
+        except ValueError:
+            messages.error(request, 'Shift value must be an integer')
+            return redirect('/')
 
-    english_alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-    shift = int(request.POST['shift_value'])
+        english_alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+        shift = int(request.POST['shift_value'])
 
-    for i in range(len(encoded_message)):
-        current_character = encoded_message[i]
-        alphabet_index = english_alphabet.find(current_character)
-        if alphabet_index >= 0:
-            plaintext_message[i] = english_alphabet[(alphabet_index - shift) % 26]
+        for i in range(len(encoded_message)):
+            current_character = encoded_message[i]
+            alphabet_index = english_alphabet.find(current_character)
+            if alphabet_index >= 0:
+                plaintext_message[i] = english_alphabet[(alphabet_index - shift) % 26]
 
-    plaintext_message = ''.join(plaintext_message)
+        plaintext_message = ''.join(plaintext_message)
 
-    return render(request, 'decode.html', {'plaintext_message': plaintext_message})
+        return render(request, 'decode.html', {'plaintext_message': plaintext_message})
+    else:
+        return redirect('/')
 
