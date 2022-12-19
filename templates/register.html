@@ -9,31 +9,29 @@
         color: red;
     }
 </style>
-<div class='container'>
-    <div class='row justify-content-center'>
-        <div style='text-align:center;width:380px'>
-            <h1>User Registration</h1><br>
-            {% for message in messages %}
-            <h5 class='alert'>** {{message}} **</h5>
-            {% endfor %}
-            <form method='POST' action='register'>
-                {% csrf_token %}
-                <div class='col-12'>
-                    <div style='text-align:right;margin:0 auto'>
-                        <p>Username: </p>
-                        <input type='text' name='username' required></input><br>
-                        <p>Email: </p>
-                        <input type='email' name='email' required></input><br>
-                        <p>Password: </p>
-                        <input type='password' name='password' required></input><br>
-                        <p>Retype Password: </p>
-                        <input type='password' name='password_verification' required></input><br>
-                    </div>
-                </div>
-                <input type='submit' value='Register' class="mb-4"></input>
-            </form>
-            <a href='login'>Click here to return to login page</a>
+
+<div style='text-align:center;width:380px'>
+    <h1>User Registration</h1><br>
+    {% for message in messages %}
+    <h5 class='alert'>** {{message}} **</h5>
+    {% endfor %}
+    <form method='POST' action='register'>
+        {% csrf_token %}
+        <div class='col-12'>
+            <div style='text-align:right;margin:0 auto'>
+                <p>Username: </p>
+                <input type='text' name='username' required></input><br>
+                <p>Email: </p>
+                <input type='email' name='email' required></input><br>
+                <p>Password: </p>
+                <input type='password' name='password' required></input><br>
+                <p>Retype Password: </p>
+                <input type='password' name='password_verification' required></input><br>
+            </div>
         </div>
-    </div>
+        <input type='submit' value='Register' class="mb-4"></input>
+    </form>
+    <a href='login'>Click here to return to login page</a>
 </div>
+
 {% endblock %}

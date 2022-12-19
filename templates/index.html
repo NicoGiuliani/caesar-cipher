@@ -9,54 +9,52 @@
         color: red;
     }
 </style>
-<div class='container'>
-    <div class='row text-center'>
-        <div class='col-12'>
-            {% if user.is_authenticated %}
-            <h3><u>Logged in as <strong>{{user.username}}</strong></u></h3>
-                {% for message in messages %}
-                    {% if message.tags == 'success' %}
-                    <h5 class='success'>** {{message}} **</h5>
-                    {% else %}
-                    <h5 class='error'>** {{message}} **</h5>
-                    {% endif %}
-                {% endfor %}
-            <form method='POST' action='encode'>
-                {% csrf_token %}
-                <h5>Type message to encode below:</h5>
-                <textarea name='plaintext_message' rows='10' cols='50'></textarea><br>
-                <input type='text' name='shift_value' placeholder='Enter shift value'></input>
-                <input type='submit' value='Encode'></input>
-            </form>
-            <br>
-            <form method='POST' action='decode' class='mb-4'>
-                {% csrf_token %}
-                <h5>Type message to decode below:</h5>
-                <textarea name='encoded_message' rows='10' cols='50'></textarea><br>
-                <input type='text' name='shift_value' placeholder='Enter shift value'></input>
-                <input type='submit' value='Decode'></input>
-            </form>
 
-            <div class='d-flex' style='justify-content:center'>
-                <form method='GET' action='view/{{user.username}}' class='me-1'>
-                    <input type='submit' value='View Encoded Messages'></input>
-                </form>
-                <form method='POST' action='logout'>
-                    {% csrf_token %}
-                    <input type='submit' value='Logout'></input>
-                </form>
-            </div>
-
+<div class='col-12'>
+    {% if user.is_authenticated %}
+    <h3><u>Logged in as <strong>{{user.username}}</strong></u></h3>
+        {% for message in messages %}
+            {% if message.tags == 'success' %}
+            <h5 class='success'>** {{message}} **</h5>
             {% else %}
-            <h1>Welcome! You must be logged in to continue.</h1>
-                {% for message in messages %}
-                <h5 class='success'>** {{message}} **</h5>
-                {% endfor %}
-            <form action='login'>
-                <input type='submit' value='Login or Register'></input>
-            </form>
+            <h5 class='error'>** {{message}} **</h5>
             {% endif %}
-        </div>
+        {% endfor %}
+    <form method='POST' action='encode'>
+        {% csrf_token %}
+        <h5>Type message to encode below:</h5>
+        <textarea name='plaintext_message' rows='10' cols='50'></textarea><br>
+        <input type='text' name='shift_value' placeholder='Enter shift value'></input>
+        <input type='submit' value='Encode'></input>
+    </form>
+    <br>
+    <form method='POST' action='decode' class='mb-4'>
+        {% csrf_token %}
+        <h5>Type message to decode below:</h5>
+        <textarea name='encoded_message' rows='10' cols='50'></textarea><br>
+        <input type='text' name='shift_value' placeholder='Enter shift value'></input>
+        <input type='submit' value='Decode'></input>
+    </form>
+
+    <div class='d-flex' style='justify-content:center'>
+        <form method='GET' action='view/{{user.username}}' class='me-1'>
+            <input type='submit' value='View Encoded Messages'></input>
+        </form>
+        <form method='POST' action='logout'>
+            {% csrf_token %}
+            <input type='submit' value='Logout'></input>
+        </form>
     </div>
+
+    {% else %}
+    <h1>Welcome! You must be logged in to continue.</h1>
+        {% for message in messages %}
+        <h5 class='success'>** {{message}} **</h5>
+        {% endfor %}
+    <form action='login'>
+        <input type='submit' value='Login or Register'></input>
+    </form>
+    {% endif %}
 </div>
+
 {% endblock %}

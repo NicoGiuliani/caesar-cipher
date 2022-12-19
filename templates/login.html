@@ -13,33 +13,27 @@
         display: inline-block;
     }
 </style>
-<div class='container'>
-    <div class='row justify-content-center'>
-        <div class='col text-center'>
-            <h1>Welcome to the login page</h1>
-            {% for message in messages %}
-            {% if message.tags == 'success' %}
-            <h5 class='success'>** {{message}} **</h5>
-            {% else %}
-            <h5 class='error'>** {{message}} **</h5>
-            {% endif %}
-            {% endfor %}
-            <form method='POST' action='login'>
-                {% csrf_token %}
-                <div class='col-12' style='margin:0 auto;width:300px'>
-                    <div style='text-align:right'>
-                        <p>Username: </p>
-                        <input type='text' name='username'></input><br>
-                        <p>Password: </p>
-                        <input type='password' name='password'></input><br>
-                    </div>
-                </div>
-                <input type='submit' value='Login' class="mb-4"></input><br>
-            </form>
-            <a href='register'>Click here to register</a>
+<div class='col text-center'>
+    <h1>Welcome to the login page</h1>
+    {% for message in messages %}
+    {% if message.tags == 'success' %}
+    <h5 class='success'>** {{message}} **</h5>
+    {% else %}
+    <h5 class='error'>** {{message}} **</h5>
+    {% endif %}
+    {% endfor %}
+    <form method='POST' action='login'>
+        {% csrf_token %}
+        <div class='col-12' style='margin:0 auto;width:300px'>
+            <div style='text-align:right'>
+                <p>Username: </p>
+                <input type='text' name='username'></input><br>
+                <p>Password: </p>
+                <input type='password' name='password'></input><br>
+            </div>
         </div>
-    </div>
+        <input type='submit' value='Login' class="mb-4"></input><br>
+    </form>
+    <a href='register'>Click here to register</a>
 </div>
-
-
 {% endblock %}
