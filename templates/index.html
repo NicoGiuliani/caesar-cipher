@@ -10,7 +10,7 @@
     }
 </style>
 
-<div class='col-12'>
+<div class='col-12 mx-auto' style="min-width: 480px">
     {% if user.is_authenticated %}
     <h3><u>Logged in as <strong>{{user.username}}</strong></u></h3>
         {% for message in messages %}
