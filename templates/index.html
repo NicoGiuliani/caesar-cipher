@@ -10,9 +10,9 @@
     }
 </style>
 
-<div class='col-12 mx-auto' style="min-width: 480px">
+<div class='col-12'>
     {% if user.is_authenticated %}
-    <h3><u>Logged in as <strong>{{user.username}}</strong></u></h3>
+    <h3 class="mx-auto"><u>Logged in as <strong>{{user.username}}</strong></u></h3>
         {% for message in messages %}
             {% if message.tags == 'success' %}
             <h5 class='success'>** {{message}} **</h5>
@@ -23,7 +23,7 @@
     <form method='POST' action='encode'>
         {% csrf_token %}
         <h5>Type message to encode below:</h5>
-        <textarea name='plaintext_message' rows='10' cols='50'></textarea><br>
+        <textarea class="w-100" style="max-width: 800px" name='plaintext_message' rows='10'></textarea><br>
         <input type='text' name='shift_value' placeholder='Enter shift value'></input>
         <input type='submit' value='Encode'></input>
     </form>
@@ -31,7 +31,7 @@
     <form method='POST' action='decode' class='mb-4'>
         {% csrf_token %}
         <h5>Type message to decode below:</h5>
-        <textarea name='encoded_message' rows='10' cols='50'></textarea><br>
+        <textarea class="w-100" style="max-width: 800px" name='encoded_message' rows='10'></textarea><br>
         <input type='text' name='shift_value' placeholder='Enter shift value'></input>
         <input type='submit' value='Decode'></input>
     </form>
